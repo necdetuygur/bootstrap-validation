@@ -20,6 +20,14 @@
     />
 
     <style>
+      /* KALDIRILABİLİR: Input'un yeşil ollmasını kaldırır */
+      .form-control:not([required]):valid {
+        border-color: #ced4da !important;
+        background-image: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Select 2 için */
       .select2-container--bootstrap5 .select2-selection--single.is-invalid,
       .was-validated
         .select2-container--bootstrap5
@@ -39,16 +47,16 @@
       <h1 class="mb-4">Form Validasyon Demo</h1>
       <form id="myForm" class="needs-validation" novalidate>
         <div class="mb-3">
-          <label for="name" class="form-label"
-            >Adınız <span class="text-danger">*</span></label
-          >
+          <label for="name" class="form-label">
+            Adınız <span class="text-danger">*</span>
+          </label>
           <input type="text" class="form-control" id="name" required />
           <div class="invalid-feedback">Bu alan zorunludur.</div>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label"
-            >E-posta <span class="text-danger">*</span></label
-          >
+          <label for="email" class="form-label">
+            E-posta <span class="text-danger">*</span>
+          </label>
           <input type="email" class="form-control" id="email" required />
           <div class="invalid-feedback">Geçerli bir e-posta girin.</div>
         </div>
@@ -56,21 +64,24 @@
           <label for="age" class="form-label">Yaşınız</label>
           <input type="number" class="form-control" id="age" />
         </div>
+
+        <div class="mb-3">
+          <label for="select1" class="form-label">
+            Seçim yapın <span class="text-danger">*</span>
+          </label>
+          <select id="select1" class="select2 form-select" required>
+            <option></option>
+            <option value="1">Seçenek 1</option>
+            <option value="2">Seçenek 2</option>
+          </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Gönder</button>
       </form>
       <div id="successMessage" class="alert alert-success mt-3 d-none">
         🎉 Form başarıyla gönderildi!
       </div>
     </div>
-
-    <form class="needs-validation" novalidate>
-      <select class="select2 form-select" required>
-        <option></option>
-        <option value="1">Seçenek 1</option>
-        <option value="2">Seçenek 2</option>
-      </select>
-      <button type="submit">Gönder</button>
-    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
