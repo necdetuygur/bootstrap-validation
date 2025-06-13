@@ -84,16 +84,22 @@
     </div>
     <script>
       $(document).ready(function () {
+        console.log("document ready");
         $(".select2").select2({
           theme: "bootstrap-5",
           placeholder: "Bir şey seçin",
         });
+        console.log("select2s ready");
 
         const form = document.querySelector("form");
         form.addEventListener("submit", function (e) {
+          console.log("form submited");
           if (!form.checkValidity()) {
+            console.log("form is invalid");
             e.preventDefault();
             e.stopPropagation();
+          } else {
+            console.log("form is valid");
           }
           form.classList.add("was-validated");
 
@@ -105,9 +111,11 @@
                 ".select2-selection--single",
               );
               if (!sel) {
+                console.log("select2 is invalid");
                 container.classList.add("is-invalid");
                 container.classList.remove("is-valid");
               } else {
+                console.log("select2 is valid");
                 container.classList.add("is-valid");
                 container.classList.remove("is-invalid");
               }
