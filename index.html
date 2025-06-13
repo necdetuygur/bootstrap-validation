@@ -89,22 +89,28 @@
           placeholder: "Bir şey seçin",
         });
 
-        $("form").on("submit", function (e) {
-          const f = this;
-          if (!f.checkValidity()) {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (e) {
+          if (!form.checkValidity()) {
             e.preventDefault();
             e.stopPropagation();
           }
-          $(f).addClass("was-validated");
-          $(f)
-            .find("select.select2[required]")
-            .each(function () {
-              const $o = $(this),
-                sel = $o.val(),
-                container = $o.next().find(".select2-selection--single");
-              if (!sel)
-                container.addClass("is-invalid").removeClass("is-valid");
-              else container.addClass("is-valid").removeClass("is-invalid");
+          form.classList.add("was-validated");
+
+          document
+            .querySelectorAll("select.select2[required]")
+            .forEach(function (origSelect) {
+              const sel = origSelect.value;
+              const container = origSelect.nextElementSibling.querySelector(
+                ".select2-selection--single",
+              );
+              if (!sel) {
+                container.classList.add("is-invalid");
+                container.classList.remove("is-valid");
+              } else {
+                container.classList.add("is-valid");
+                container.classList.remove("is-invalid");
+              }
             });
         });
       });
